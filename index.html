@@ -1,410 +1,471 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Beaker, Leaf, Zap, ChevronDown, Instagram, Facebook, Mail } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.Scent Lab | Science × Aroma × Energy</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-/* D.Scent Lab - Brand Website 
-  Style: Ultra-Black Muji / Scientific Zen / Minimalist Premium
-*/
+    <!-- Custom Config & Animations -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            950: '#0a0a0a',
+                        }
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
 
-const App = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    <style>
+        /* Custom Styles for Utilities not in Tailwind by default */
+        body {
+            background-color: #0a0a0a;
+            color: #d4d4d4;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        /* Smooth selection style */
+        ::selection {
+            background-color: #404040;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen overflow-x-hidden selection:bg-neutral-700 selection:text-white">
 
-  // Handle Scroll Effect for Navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out border-b border-transparent py-6 bg-transparent">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl tracking-[0.2em] font-light text-white z-50 mix-blend-difference cursor-pointer">
+                D.SCENT <span class="font-bold">LAB</span>
+            </div>
 
-  const navLinks = [
-    { name: 'PHILOSOPHY', href: '#philosophy' },
-    { name: 'VALUES', href: '#values' },
-    { name: 'PRODUCTS', href: '#products' },
-    { name: 'SERVICES', href: '#services' },
-  ];
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex space-x-12">
+                <a href="#philosophy" class="text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300 relative group">
+                    PHILOSOPHY
+                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#values" class="text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300 relative group">
+                    VALUES
+                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#products" class="text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300 relative group">
+                    PRODUCTS
+                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#services" class="text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300 relative group">
+                    SERVICES
+                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
 
-  return (
-    <div className="bg-neutral-950 text-neutral-300 font-sans selection:bg-neutral-700 selection:text-white min-h-screen overflow-x-hidden">
-      
-      {/* Navigation */}
-      <nav 
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out border-b ${
-          isScrolled 
-            ? 'bg-neutral-950/80 backdrop-blur-md border-neutral-800 py-4' 
-            : 'bg-transparent border-transparent py-6'
-        }`}
-      >
-        <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-          <div className="text-2xl tracking-[0.2em] font-light text-white z-50 mix-blend-difference">
-            D.SCENT <span className="font-bold">LAB</span>
-          </div>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-12">
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300 relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden z-50 text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden z-50 text-white focus:outline-none">
+                <i data-lucide="menu" id="menu-icon"></i>
+                <i data-lucide="x" id="close-icon" class="hidden"></i>
+            </button>
         </div>
 
-        {/* Mobile Nav Overlay */}
-        <div className={`fixed inset-0 bg-neutral-950 z-40 flex flex-col justify-center items-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl tracking-[0.15em] text-white mb-8 hover:text-neutral-500 transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+        <!-- Mobile Nav Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-neutral-950 z-40 flex flex-col justify-center items-center transition-all duration-500 opacity-0 invisible">
+            <a href="#philosophy" class="mobile-link text-2xl tracking-[0.15em] text-white mb-8 hover:text-neutral-500 transition-colors">PHILOSOPHY</a>
+            <a href="#values" class="mobile-link text-2xl tracking-[0.15em] text-white mb-8 hover:text-neutral-500 transition-colors">VALUES</a>
+            <a href="#products" class="mobile-link text-2xl tracking-[0.15em] text-white mb-8 hover:text-neutral-500 transition-colors">PRODUCTS</a>
+            <a href="#services" class="mobile-link text-2xl tracking-[0.15em] text-white mb-8 hover:text-neutral-500 transition-colors">SERVICES</a>
         </div>
-      </nav>
+    </nav>
 
-      {/* Hero Section */}
-      <header className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image Placeholder */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=2574&auto=format&fit=crop" 
-            alt="Minimalist Dark Texture" 
-            className="w-full h-full object-cover opacity-40 grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/50"></div>
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=2574&auto=format&fit=crop" 
+                 alt="Minimalist Dark Texture" 
+                 class="w-full h-full object-cover opacity-40 grayscale" />
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/50"></div>
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto mt-20">
-          <p className="text-xs md:text-sm tracking-[0.4em] text-neutral-400 mb-6 uppercase animate-fade-in-up">
-            Science × Aroma × Energy
-          </p>
-          <h1 className="text-4xl md:text-7xl font-light text-white tracking-wider leading-tight mb-8 animate-fade-in-up delay-100">
-            讓香氣<br className="md:hidden" />真正成為<br />支持生活的力量
-          </h1>
-          <p className="text-sm md:text-base font-light text-neutral-400 tracking-widest leading-relaxed mb-12 animate-fade-in-up delay-200">
-            不僅是華麗的香味，而是精準的能量引導。<br />
-            以科學為骨，以香氣為語，以能量為心。
-          </p>
-          
-          <div className="animate-fade-in-up delay-300">
-             <a href="#products" className="inline-block border border-neutral-700 hover:border-white text-neutral-300 hover:text-white px-8 py-3 text-xs tracking-[0.2em] transition-all duration-500">
-              EXPLORE COLLECTION
-            </a>
-          </div>
-        </div>
-
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-neutral-600">
-          <ChevronDown size={20} />
-        </div>
-      </header>
-
-      {/* Brand Philosophy - Split Layout */}
-      <section id="philosophy" className="py-24 md:py-32 bg-neutral-950 border-t border-neutral-900">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div className="order-2 md:order-1 relative">
-              <div className="aspect-[3/4] overflow-hidden bg-neutral-900 relative">
-                 <img 
-                  src="https://images.unsplash.com/photo-1532413992378-f169ac26fff0?q=80&w=2680&auto=format&fit=crop" 
-                  alt="Laboratory Essential Oil" 
-                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-1000 grayscale hover:grayscale-0"
-                />
-                {/* Decorative Lab Lines */}
-                <div className="absolute top-4 right-4 w-24 h-[1px] bg-white/30"></div>
-                <div className="absolute bottom-4 left-4 w-24 h-[1px] bg-white/30"></div>
-                <div className="absolute top-4 right-4 h-24 w-[1px] bg-white/30"></div>
-              </div>
-              <div className="absolute -bottom-8 -right-8 text-6xl md:text-9xl font-bold text-neutral-800 -z-10 opacity-50">
-                LAB
-              </div>
-            </div>
-            
-            <div className="order-1 md:order-2">
-              <h2 className="text-3xl md:text-4xl font-light text-white mb-8 tracking-widest">
-                我們的使命<br/>
-                <span className="text-neutral-600 text-xl md:text-2xl">Mission Statement</span>
-              </h2>
-              <div className="space-y-6 text-neutral-400 font-light leading-loose tracking-wide text-justify">
-                <p>
-                  D.Scent Lab 堅持<span className="text-white border-b border-neutral-700 pb-0.5 mx-1">安全</span>、<span className="text-white border-b border-neutral-700 pb-0.5 mx-1">真實</span>與<span className="text-white border-b border-neutral-700 pb-0.5 mx-1">透明</span>。
-                </p>
-                <p>
-                  我們運用高品質原精、單體與調香技術，打造能「安定情緒、提升能量、支持行動力」的專業香氣產品。
-                  這不是玄學，而是可被感知的科學體感。
-                </p>
-                <blockquote className="border-l border-neutral-700 pl-6 italic text-neutral-500 my-8">
-                  "用香氣支持生活，用科學守護安全，用能量啟動改變。"
-                </blockquote>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values - 3 Columns */}
-      <section id="values" className="py-24 bg-neutral-900 text-center">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-neutral-800">
-            {/* Value 1 */}
-            <div className="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
-              <div className="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
-                <Beaker size={32} strokeWidth={1} />
-              </div>
-              <h3 className="text-xl text-white tracking-[0.2em] mb-4">SAFETY</h3>
-              <h4 className="text-sm text-neutral-400 mb-4 tracking-widest">安全 · 科學</h4>
-              <p className="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
-                嚴格遵循 IFRA 標準<br/>成分透明公開<br/>專業芳療背景把關
-              </p>
-            </div>
-
-            {/* Value 2 */}
-            <div className="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
-              <div className="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
-                <Leaf size={32} strokeWidth={1} />
-              </div>
-              <h3 className="text-xl text-white tracking-[0.2em] mb-4">QUALITY</h3>
-              <h4 className="text-sm text-neutral-400 mb-4 tracking-widest">品質 · 真實</h4>
-              <p className="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
-                來自全球優質產地精油<br/>調香等級單體原料<br/>實驗室精神精準調製
-              </p>
-            </div>
-
-            {/* Value 3 */}
-            <div className="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
-              <div className="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
-                <Zap size={32} strokeWidth={1} />
-              </div>
-              <h3 className="text-xl text-white tracking-[0.2em] mb-4">EXPERIENCE</h3>
-              <h4 className="text-sm text-neutral-400 mb-4 tracking-widest">體驗 · 能量</h4>
-              <p className="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
-                不誇大、不神化<br/>真實有效的身心支持<br/>深入日常的情緒工具
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Products Showcase */}
-      <section id="products" className="py-24 md:py-32 bg-neutral-950 relative">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-neutral-900 pb-6">
-            <div>
-              <h2 className="text-3xl font-light text-white tracking-widest mb-2">核心系列</h2>
-              <p className="text-neutral-500 text-sm tracking-wider">CORE COLLECTION</p>
-            </div>
-            <a href="#" className="hidden md:flex items-center text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors mt-4 md:mt-0">
-              VIEW ALL <ArrowRight size={14} className="ml-2" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Product Card 1 */}
-            <div className="group cursor-pointer">
-              <div className="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1608571423902-eed4a5e84e43?q=80&w=2574&auto=format&fit=crop" 
-                  alt="Essential Oils" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                <div className="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                   <p className="text-xs text-white tracking-widest">EXPLORE MORE</p>
-                </div>
-              </div>
-              <h3 className="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Essential Oils</h3>
-              <p className="text-xs text-neutral-500 tracking-wider">單方 / 複方精油</p>
-            </div>
-
-            {/* Product Card 2 */}
-            <div className="group cursor-pointer">
-              <div className="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
-                 <img 
-                  src="https://images.unsplash.com/photo-1595867359570-52026852445e?q=80&w=2574&auto=format&fit=crop" 
-                  alt="Miracle Plant Perfume" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
-                />
-                 <div className="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                   <p className="text-xs text-white tracking-widest">EXPLORE MORE</p>
-                </div>
-              </div>
-              <h3 className="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Miracle Plant</h3>
-              <p className="text-xs text-neutral-500 tracking-wider">睡眠噴霧 / 香氛系列</p>
-            </div>
-
-            {/* Product Card 3 */}
-            <div className="group cursor-pointer">
-              <div className="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
-                 <img 
-                  src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2670&auto=format&fit=crop" 
-                  alt="Body & Spa" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
-                />
-                 <div className="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                   <p className="text-xs text-white tracking-widest">EXPLORE MORE</p>
-                </div>
-              </div>
-              <h3 className="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Body & Spa Oils</h3>
-              <p className="text-xs text-neutral-500 tracking-wider">身體能量按摩油</p>
-            </div>
-          </div>
-          
-          <div className="mt-12 text-center md:hidden">
-            <a href="#" className="inline-flex items-center text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors border-b border-neutral-800 pb-1">
-              VIEW ALL COLLECTION <ArrowRight size={14} className="ml-2" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section - Dark Gray Background */}
-      <section id="services" className="py-24 bg-neutral-900">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-light text-white tracking-widest mb-4">專業服務</h2>
-            <p className="text-neutral-500 font-light text-sm tracking-wide leading-relaxed">
-              專業芳療背景，提供可落地、有感的方案。<br/>
-              每一次的接觸，都是一場身心平衡的實驗。
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-20">
+            <p class="text-xs md:text-sm tracking-[0.4em] text-neutral-400 mb-6 uppercase animate-fade-in-up opacity-0">
+                Science × Aroma × Energy
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-800 border border-neutral-800">
-            {/* Service 1 */}
-            <div className="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
-              <span className="text-neutral-600 text-xs tracking-widest mb-auto">01</span>
-              <h3 className="text-2xl text-white font-light mb-4">身心平衡調香</h3>
-              <p className="text-neutral-400 text-sm font-light leading-relaxed mb-8">
-                一對一專屬諮詢。透過對話與香氣引導，為當下的身心狀態調製專屬配方。
-              </p>
-              <button className="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">BOOK NOW</button>
+            <h1 class="text-4xl md:text-7xl font-light text-white tracking-wider leading-tight mb-8 animate-fade-in-up delay-100 opacity-0">
+                讓香氣<br class="md:hidden" />真正成為<br />支持生活的力量
+            </h1>
+            <p class="text-sm md:text-base font-light text-neutral-400 tracking-widest leading-relaxed mb-12 animate-fade-in-up delay-200 opacity-0">
+                不僅是華麗的香味，而是精準的能量引導。<br />
+                以科學為骨，以香氣為語，以能量為心。
+            </p>
+            
+            <div class="animate-fade-in-up delay-300 opacity-0">
+                <a href="#products" class="inline-block border border-neutral-700 hover:border-white text-neutral-300 hover:text-white px-8 py-3 text-xs tracking-[0.2em] transition-all duration-500">
+                    EXPLORE COLLECTION
+                </a>
             </div>
-
-             {/* Service 2 */}
-            <div className="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
-              <span className="text-neutral-600 text-xs tracking-widest mb-auto">02</span>
-              <h3 className="text-2xl text-white font-light mb-4">香氣體驗課程</h3>
-              <p className="text-neutral-400 text-sm font-light leading-relaxed mb-8">
-                精油 × 單體 × 調香。深入淺出的知識傳遞，親手調製屬於自己的香氛作品。
-              </p>
-               <button className="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">LEARN MORE</button>
-            </div>
-
-             {/* Service 3 */}
-            <div className="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
-              <span className="text-neutral-600 text-xs tracking-widest mb-auto">03</span>
-              <h3 className="text-2xl text-white font-light mb-4">芳療療癒課程</h3>
-              <p className="text-neutral-400 text-sm font-light leading-relaxed mb-8">
-                放鬆、壓力管理、能量支持。結合經膜刀與油推技術的深度放鬆體驗。
-              </p>
-               <button className="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">LEARN MORE</button>
-            </div>
-
-             {/* Service 4 */}
-            <div className="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
-              <span className="text-neutral-600 text-xs tracking-widest mb-auto">04</span>
-              <h3 className="text-2xl text-white font-light mb-4">企業合作 / 策展</h3>
-              <p className="text-neutral-400 text-sm font-light leading-relaxed mb-8">
-                跨界活動、咖啡廳聯名、藝術展覽。打造符合品牌形象的空間香氛識別。
-              </p>
-               <button className="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">CONTACT US</button>
-            </div>
-          </div>
         </div>
-      </section>
 
-      {/* Differentiation / Brand Promise */}
-      <section className="py-24 bg-neutral-950 border-t border-neutral-900 text-center">
-        <div className="container mx-auto px-6">
-           <h2 className="text-2xl md:text-3xl font-light text-white mb-12 tracking-[0.2em]">
-             DIFFERENTIATION
-           </h2>
-           <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 lg:space-x-24 text-sm font-light text-neutral-400">
-             <div className="flex flex-col items-center max-w-[200px]">
-               <div className="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
-                 <span className="text-xl">Ⅰ</span>
-               </div>
-               <p>科學基礎 × 能量體感<br/>雙軌並行</p>
-             </div>
-             <div className="w-px h-16 bg-neutral-800 hidden md:block"></div>
-             <div className="flex flex-col items-center max-w-[200px]">
-               <div className="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
-                 <span className="text-xl">Ⅱ</span>
-               </div>
-               <p>重視安全<br/>不誇大、不造神</p>
-             </div>
-             <div className="w-px h-16 bg-neutral-800 hidden md:block"></div>
-             <div className="flex flex-col items-center max-w-[200px]">
-               <div className="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
-                 <span className="text-xl">Ⅲ</span>
-               </div>
-               <p>安定 · 清晰 · 溫暖<br/>極簡美學特質</p>
-             </div>
-           </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-neutral-600">
+            <i data-lucide="chevron-down" width="20"></i>
         </div>
-      </section>
+    </header>
 
-      {/* Vision / Footer */}
-      <footer className="bg-black pt-20 pb-10 border-t border-neutral-900">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
-            <div className="md:col-span-2">
-              <h4 className="text-2xl text-white tracking-[0.2em] mb-6">D.SCENT LAB</h4>
-              <p className="text-neutral-500 text-sm leading-loose max-w-md mb-8">
-                成為台灣最值得信賴、最具影響力的<br/>
-                科學 × 香氣 × 身心能量品牌。
-              </p>
-              <div className="flex space-x-6">
-                <a href="#" className="text-neutral-400 hover:text-white transition-colors"><Instagram size={20} /></a>
-                <a href="#" className="text-neutral-400 hover:text-white transition-colors"><Facebook size={20} /></a>
-                <a href="#" className="text-neutral-400 hover:text-white transition-colors"><Mail size={20} /></a>
-              </div>
+    <!-- Brand Philosophy -->
+    <section id="philosophy" class="py-24 md:py-32 bg-neutral-950 border-t border-neutral-900">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+                <div class="order-2 md:order-1 relative">
+                    <div class="aspect-[3/4] overflow-hidden bg-neutral-900 relative">
+                        <img src="https://images.unsplash.com/photo-1532413992378-f169ac26fff0?q=80&w=2680&auto=format&fit=crop" 
+                             alt="Laboratory Essential Oil" 
+                             class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-1000 grayscale hover:grayscale-0" />
+                        <!-- Decorative Lab Lines -->
+                        <div class="absolute top-4 right-4 w-24 h-[1px] bg-white/30"></div>
+                        <div class="absolute bottom-4 left-4 w-24 h-[1px] bg-white/30"></div>
+                        <div class="absolute top-4 right-4 h-24 w-[1px] bg-white/30"></div>
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 text-6xl md:text-9xl font-bold text-neutral-800 -z-10 opacity-50 select-none">
+                        LAB
+                    </div>
+                </div>
+                
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl md:text-4xl font-light text-white mb-8 tracking-widest">
+                        我們的使命<br/>
+                        <span class="text-neutral-600 text-xl md:text-2xl">Mission Statement</span>
+                    </h2>
+                    <div class="space-y-6 text-neutral-400 font-light leading-loose tracking-wide text-justify">
+                        <p>
+                            D.Scent Lab 堅持<span class="text-white border-b border-neutral-700 pb-0.5 mx-1">安全</span>、<span class="text-white border-b border-neutral-700 pb-0.5 mx-1">真實</span>與<span class="text-white border-b border-neutral-700 pb-0.5 mx-1">透明</span>。
+                        </p>
+                        <p>
+                            我們運用高品質原精、單體與調香技術，打造能「安定情緒、提升能量、支持行動力」的專業香氣產品。
+                            這不是玄學，而是可被感知的科學體感。
+                        </p>
+                        <blockquote class="border-l border-neutral-700 pl-6 italic text-neutral-500 my-8">
+                            "用香氣支持生活，用科學守護安全，用能量啟動改變。"
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section id="values" class="py-24 bg-neutral-900 text-center">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-neutral-800">
+                <!-- Value 1 -->
+                <div class="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
+                    <div class="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
+                        <i data-lucide="beaker" width="32" height="32" stroke-width="1"></i>
+                    </div>
+                    <h3 class="text-xl text-white tracking-[0.2em] mb-4">SAFETY</h3>
+                    <h4 class="text-sm text-neutral-400 mb-4 tracking-widest">安全 · 科學</h4>
+                    <p class="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
+                        嚴格遵循 IFRA 標準<br/>成分透明公開<br/>專業芳療背景把關
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
+                    <div class="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
+                        <i data-lucide="leaf" width="32" height="32" stroke-width="1"></i>
+                    </div>
+                    <h3 class="text-xl text-white tracking-[0.2em] mb-4">QUALITY</h3>
+                    <h4 class="text-sm text-neutral-400 mb-4 tracking-widest">品質 · 真實</h4>
+                    <p class="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
+                        來自全球優質產地精油<br/>調香等級單體原料<br/>實驗室精神精準調製
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="px-4 py-8 group hover:bg-neutral-800/30 transition-colors duration-500">
+                    <div class="mb-6 flex justify-center text-neutral-500 group-hover:text-white transition-colors duration-500">
+                        <i data-lucide="zap" width="32" height="32" stroke-width="1"></i>
+                    </div>
+                    <h3 class="text-xl text-white tracking-[0.2em] mb-4">EXPERIENCE</h3>
+                    <h4 class="text-sm text-neutral-400 mb-4 tracking-widest">體驗 · 能量</h4>
+                    <p class="text-xs text-neutral-500 leading-relaxed max-w-xs mx-auto">
+                        不誇大、不神化<br/>真實有效的身心支持<br/>深入日常的情緒工具
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase -->
+    <section id="products" class="py-24 md:py-32 bg-neutral-950 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-neutral-900 pb-6">
+                <div>
+                    <h2 class="text-3xl font-light text-white tracking-widest mb-2">核心系列</h2>
+                    <p class="text-neutral-500 text-sm tracking-wider">CORE COLLECTION</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors mt-4 md:mt-0">
+                    VIEW ALL <i data-lucide="arrow-right" width="14" class="ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5e84e43?q=80&w=2574&auto=format&fit=crop" 
+                             alt="Essential Oils" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" />
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-xs text-white tracking-widest">EXPLORE MORE</p>
+                        </div>
+                    </div>
+                    <h3 class="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Essential Oils</h3>
+                    <p class="text-xs text-neutral-500 tracking-wider">單方 / 複方精油</p>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1595867359570-52026852445e?q=80&w=2574&auto=format&fit=crop" 
+                             alt="Miracle Plant Perfume" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" />
+                        <div class="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-xs text-white tracking-widest">EXPLORE MORE</p>
+                        </div>
+                    </div>
+                    <h3 class="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Miracle Plant</h3>
+                    <p class="text-xs text-neutral-500 tracking-wider">睡眠噴霧 / 香氛系列</p>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[4/5] bg-neutral-900 overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2670&auto=format&fit=crop" 
+                             alt="Body & Spa" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" />
+                        <div class="absolute bottom-0 left-0 w-full p-4 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-xs text-white tracking-widest">EXPLORE MORE</p>
+                        </div>
+                    </div>
+                    <h3 class="text-lg text-white font-light tracking-wide mb-1 group-hover:text-neutral-400 transition-colors">Body & Spa Oils</h3>
+                    <p class="text-xs text-neutral-500 tracking-wider">身體能量按摩油</p>
+                </div>
             </div>
             
-            <div>
-              <h5 className="text-white text-xs tracking-widest mb-6 uppercase">Collections</h5>
-              <ul className="space-y-4 text-neutral-500 text-sm">
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Essential Oils</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Miracle Plant</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Body & Spa</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Gift Sets</a></li>
-              </ul>
+            <div class="mt-12 text-center md:hidden">
+                <a href="#" class="inline-flex items-center text-xs tracking-[0.2em] text-neutral-400 hover:text-white transition-colors border-b border-neutral-800 pb-1">
+                    VIEW ALL COLLECTION <i data-lucide="arrow-right" width="14" class="ml-2"></i>
+                </a>
             </div>
-
-            <div>
-              <h5 className="text-white text-xs tracking-widest mb-6 uppercase">Support</h5>
-              <ul className="space-y-4 text-neutral-500 text-sm">
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Shipping & Returns</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-neutral-300 transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-neutral-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-neutral-600 tracking-wider">
-            <p>&copy; 2024 D.SCENT LAB. All rights reserved.</p>
-            <p className="mt-4 md:mt-0">Design by AI Assistant</p>
-          </div>
         </div>
-      </footer>
-    </div>
-  );
-};
+    </section>
 
-export default App;
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-neutral-900">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-light text-white tracking-widest mb-4">專業服務</h2>
+                <p class="text-neutral-500 font-light text-sm tracking-wide leading-relaxed">
+                    專業芳療背景，提供可落地、有感的方案。<br/>
+                    每一次的接觸，都是一場身心平衡的實驗。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-800 border border-neutral-800">
+                <!-- Service 1 -->
+                <div class="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
+                    <span class="text-neutral-600 text-xs tracking-widest mb-auto">01</span>
+                    <h3 class="text-2xl text-white font-light mb-4">身心平衡調香</h3>
+                    <p class="text-neutral-400 text-sm font-light leading-relaxed mb-8">
+                        一對一專屬諮詢。透過對話與香氣引導，為當下的身心狀態調製專屬配方。
+                    </p>
+                    <button class="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">BOOK NOW</button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
+                    <span class="text-neutral-600 text-xs tracking-widest mb-auto">02</span>
+                    <h3 class="text-2xl text-white font-light mb-4">香氣體驗課程</h3>
+                    <p class="text-neutral-400 text-sm font-light leading-relaxed mb-8">
+                        精油 × 單體 × 調香。深入淺出的知識傳遞，親手調製屬於自己的香氛作品。
+                    </p>
+                    <button class="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">LEARN MORE</button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
+                    <span class="text-neutral-600 text-xs tracking-widest mb-auto">03</span>
+                    <h3 class="text-2xl text-white font-light mb-4">芳療療癒課程</h3>
+                    <p class="text-neutral-400 text-sm font-light leading-relaxed mb-8">
+                        放鬆、壓力管理、能量支持。結合經膜刀與油推技術的深度放鬆體驗。
+                    </p>
+                    <button class="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">LEARN MORE</button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-neutral-900 p-12 hover:bg-neutral-800/50 transition-colors duration-300 flex flex-col items-start min-h-[300px]">
+                    <span class="text-neutral-600 text-xs tracking-widest mb-auto">04</span>
+                    <h3 class="text-2xl text-white font-light mb-4">企業合作 / 策展</h3>
+                    <p class="text-neutral-400 text-sm font-light leading-relaxed mb-8">
+                        跨界活動、咖啡廳聯名、藝術展覽。打造符合品牌形象的空間香氛識別。
+                    </p>
+                    <button class="text-xs text-white border border-neutral-600 px-6 py-2 hover:bg-white hover:text-black transition-all">CONTACT US</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation -->
+    <section class="py-24 bg-neutral-950 border-t border-neutral-900 text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl font-light text-white mb-12 tracking-[0.2em]">
+                DIFFERENTIATION
+            </h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 lg:space-x-24 text-sm font-light text-neutral-400">
+                <div class="flex flex-col items-center max-w-[200px]">
+                    <div class="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
+                        <span class="text-xl">Ⅰ</span>
+                    </div>
+                    <p>科學基礎 × 能量體感<br/>雙軌並行</p>
+                </div>
+                <div class="w-px h-16 bg-neutral-800 hidden md:block"></div>
+                <div class="flex flex-col items-center max-w-[200px]">
+                    <div class="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
+                        <span class="text-xl">Ⅱ</span>
+                    </div>
+                    <p>重視安全<br/>不誇大、不造神</p>
+                </div>
+                <div class="w-px h-16 bg-neutral-800 hidden md:block"></div>
+                <div class="flex flex-col items-center max-w-[200px]">
+                    <div class="w-12 h-12 border border-neutral-800 rounded-full flex items-center justify-center mb-4 text-neutral-600">
+                        <span class="text-xl">Ⅲ</span>
+                    </div>
+                    <p>安定 · 清晰 · 溫暖<br/>極簡美學特質</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-20 pb-10 border-t border-neutral-900">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
+                <div class="md:col-span-2">
+                    <h4 class="text-2xl text-white tracking-[0.2em] mb-6">D.SCENT LAB</h4>
+                    <p class="text-neutral-500 text-sm leading-loose max-w-md mb-8">
+                        成為台灣最值得信賴、最具影響力的<br/>
+                        科學 × 香氣 × 身心能量品牌。
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i data-lucide="instagram" width="20"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i data-lucide="facebook" width="20"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i data-lucide="mail" width="20"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-white text-xs tracking-widest mb-6 uppercase">Collections</h5>
+                    <ul class="space-y-4 text-neutral-500 text-sm">
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Essential Oils</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Miracle Plant</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Body & Spa</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Gift Sets</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white text-xs tracking-widest mb-6 uppercase">Support</h5>
+                    <ul class="space-y-4 text-neutral-500 text-sm">
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-neutral-300 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-neutral-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-neutral-600 tracking-wider">
+                <p>&copy; 2024 D.SCENT LAB. All rights reserved.</p>
+                <p class="mt-4 md:mt-0">Design by AI Assistant</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+                navbar.classList.add('bg-neutral-950/80', 'backdrop-blur-md', 'border-neutral-800', 'py-4');
+            } else {
+                navbar.classList.add('bg-transparent', 'border-transparent', 'py-6');
+                navbar.classList.remove('bg-neutral-950/80', 'backdrop-blur-md', 'border-neutral-800', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                mobileMenu.classList.add('opacity-100', 'visible');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                mobileMenu.classList.remove('opacity-100', 'visible');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
